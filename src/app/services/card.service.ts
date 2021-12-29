@@ -10,6 +10,7 @@ import { Cards } from '../models/cards';
 export class CardService {
 
   cards!:Cards[];
+  filteredCards!:Cards[]
 
   constructor(
     @Inject('apiUrl') private apiUrl:string,
@@ -18,7 +19,7 @@ export class CardService {
   getCards():void{
    this.Http.get<Cards[]>(this.apiUrl+'/cards')
    .subscribe((res:Cards[])=>{
-    this.cards = res
+    this.cards = this.filteredCards = res
    })
   }
 
